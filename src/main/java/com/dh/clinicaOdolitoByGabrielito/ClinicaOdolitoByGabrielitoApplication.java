@@ -1,13 +1,13 @@
-package com.dh.integradorBackEnd;
+package com.dh.clinicaOdolitoByGabrielito;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class IntegradorApplication {
+public class ClinicaOdolitoByGabrielitoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(IntegradorApplication.class, args);
+		SpringApplication.run(ClinicaOdolitoByGabrielitoApplication.class, args);
 	}
 
 }
