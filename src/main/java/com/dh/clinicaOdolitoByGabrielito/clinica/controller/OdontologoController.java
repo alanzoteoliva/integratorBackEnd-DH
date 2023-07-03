@@ -2,6 +2,7 @@ package com.dh.clinicaOdolitoByGabrielito.clinica.controller;
 
 import com.dh.clinicaOdolitoByGabrielito.clinica.dto.OdontologoDTO;
 import com.dh.clinicaOdolitoByGabrielito.clinica.service.OdontologoService;
+import com.dh.clinicaOdolitoByGabrielito.exception.ClinicaErrorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,18 +17,18 @@ public class OdontologoController {
     private OdontologoService odontologoService;
 
     @GetMapping
-    public ResponseEntity<List<OdontologoDTO>> listar() {
+    public ResponseEntity<List<OdontologoDTO>> listar() throws ClinicaErrorResponse {
         try {
             List<OdontologoDTO> odontologos = odontologoService.listarOdontologos();
             return ResponseEntity.ok(odontologos);
         } catch (Exception e){
             // Manejo de la excepción
-            return null;
+            throw new ClinicaErrorResponse("No se encontró ningún odontólogo registrado");
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OdontologoDTO> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<OdontologoDTO> buscarPorId(@PathVariable Long id) throws ClinicaErrorResponse {
         try {
             OdontologoDTO odontologoDTO = odontologoService.obtenerOdontologoPorId(id);
                 if (odontologoDTO != null) {
@@ -37,7 +38,7 @@ public class OdontologoController {
                     }
             } catch (Exception e){
             // Manejo de la excepción
-            return null;
+            throw new ClinicaErrorResponse("No se encontró ningún odontólogo con el ID: " + id);
         }
     }
 
@@ -56,13 +57,12 @@ public class OdontologoController {
     }
 
     @PostMapping
-    public ResponseEntity<OdontologoDTO> registrar(@RequestBody OdontologoDTO odontologoDTO) {
+    public ResponseEntity<OdontologoDTO> guardar(@RequestBody OdontologoDTO odontologoDTO) throws ClinicaErrorResponse {
         try {
             OdontologoDTO nuevoOdontologoDTO = odontologoService.registrarOdontologo(odontologoDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(nuevoOdontologoDTO);
         } catch (Exception e) {
-            // Manejo de la excepción
-            return null;
+            throw new ClinicaErrorResponse("No se pudo registrar este cambio");
         }
     }
 

@@ -4,10 +4,8 @@ import com.dh.clinicaOdolitoByGabrielito.login.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    List<Usuario> findByNombreUsuario(String nombreUsuario);
+    public Usuario findByUsername(String username);
 
 }

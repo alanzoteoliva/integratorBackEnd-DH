@@ -25,10 +25,6 @@ public class Paciente {
     private LocalDate fechaAlta;
     @OneToMany(mappedBy = "paciente")
     private Set<Turno> turnos;
-    public void setDNI(Long dni) {
-    }
 
-    public Paciente orElseThrow(Object o) {
-        return null;
-    }
 }
+
