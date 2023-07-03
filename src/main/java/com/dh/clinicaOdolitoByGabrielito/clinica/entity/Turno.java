@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "turnos")
@@ -25,5 +26,9 @@ public class Turno {
     @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
 
-    private LocalDateTime fechaHora;
+    @Column(name = "fecha")
+    private LocalDate fecha;
+
+    @Column(name = "hora")
+    private LocalTime hora;
 }

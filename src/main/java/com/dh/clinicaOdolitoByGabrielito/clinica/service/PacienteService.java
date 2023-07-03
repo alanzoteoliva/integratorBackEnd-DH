@@ -1,9 +1,8 @@
 package com.dh.clinicaOdolitoByGabrielito.clinica.service;
 
-import com.dh.clinicaOdolitoByGabrielito.clinica.dto.OdontologoDTO;
+
 import com.dh.clinicaOdolitoByGabrielito.clinica.dto.PacienteDTO;
 import com.dh.clinicaOdolitoByGabrielito.clinica.dto.TurnoDTO;
-import com.dh.clinicaOdolitoByGabrielito.clinica.entity.Odontologo;
 import com.dh.clinicaOdolitoByGabrielito.clinica.entity.Paciente;
 import com.dh.clinicaOdolitoByGabrielito.clinica.entity.Turno;
 import com.dh.clinicaOdolitoByGabrielito.clinica.repository.PacienteRepository;
@@ -13,10 +12,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -75,50 +72,6 @@ public class PacienteService {
         pacienteRepository.deleteByDni(dni);
     }
 
-    public Paciente registrarNombre(Long id, String nombre) {
-        Paciente paciente = pacienteRepository.findById(id).orElse(null);
-        if (paciente != null) {
-            paciente.setNombre(nombre);
-            return pacienteRepository.save(paciente);
-        }
-        return null;
-    }
-
-    public Paciente registrarApellido(Long id, String apellido) {
-        Paciente paciente = pacienteRepository.findById(id).orElse(null);
-        if (paciente != null) {
-            paciente.setApellido(apellido);
-            return pacienteRepository.save(paciente);
-        }
-        return null;
-    }
-
-    public Paciente registrarDomicilio(Long id, String domicilio) {
-        Paciente paciente = pacienteRepository.findById(id).orElse(null);
-        if (paciente != null) {
-            paciente.setDomicilio(domicilio);
-            return pacienteRepository.save(paciente);
-        }
-        return null;
-    }
-
-    public Paciente registrarDNI(Long id, String dni) {
-        Paciente paciente = pacienteRepository.findById(id).orElse(null);
-        if (paciente != null) {
-            paciente.setDNI(dni);
-            return pacienteRepository.save(paciente);
-        }
-        return null;
-    }
-
-    public Paciente registrarFechaAlta(Long id, LocalDate fechaAlta) {
-        Paciente paciente = pacienteRepository.findById(id).orElse(null);
-        if (paciente != null) {
-            paciente.setFechaAlta(fechaAlta);
-            return pacienteRepository.save(paciente);
-        }
-        return null;
-    }
 
     public List<TurnoDTO> obtenerTurnosPaciente(Long dni) {
         Paciente paciente = pacienteRepository.findByDni(dni);

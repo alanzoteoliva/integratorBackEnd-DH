@@ -21,11 +21,11 @@ public class Paciente {
     private String apellido;
     private String nombre;
     private String domicilio;
-    private String dni;
+    private Long dni;
     private LocalDate fechaAlta;
     @OneToMany(mappedBy = "paciente")
     private Set<Turno> turnos;
-    public void setDNI(String dni) {
+    public void setDNI(Long dni) {
     }
 
     public Paciente orElseThrow(Object o) {
